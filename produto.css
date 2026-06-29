@@ -1,0 +1,1291 @@
+/* =====================================================
+   PRODUTOS.CSS
+   PARTE 1
+===================================================== */
+
+:root{
+
+    --roxo:#1a0d2e;
+    --roxo2:#24113f;
+    --roxo3:#2d1b4e;
+
+    --rosa:#e066a0;
+
+    --lilas:#9b6dc5;
+
+    --texto:#f0e6ff;
+
+    --texto2:#c9aee8;
+
+    --borda:rgba(155,109,197,.25);
+
+}
+
+/* =======================================
+CATÁLOGO
+======================================= */
+
+.catalogo-topo{
+
+    width:100%;
+
+    padding:50px;
+
+    background:var(--roxo);
+
+    border-top:1px solid var(--borda);
+
+}
+
+.breadcrumb{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:13px;
+
+    color:var(--texto2);
+
+}
+
+.breadcrumb a{
+
+    text-decoration:none;
+
+    color:var(--texto2);
+
+    transition:.3s;
+
+}
+
+.breadcrumb a:hover{
+
+    color:white;
+
+}
+
+.catalogo-topo h1{
+
+    margin-top:18px;
+
+    font-size:42px;
+
+    font-family:'Playfair Display',serif;
+
+    color:white;
+
+}
+
+.subtitulo{
+
+    margin-top:10px;
+
+    color:var(--texto2);
+
+    font-size:16px;
+
+}
+
+/* =======================================
+BANNER
+======================================= */
+
+.banner-estilo{
+
+    width:100%;
+
+    height:420px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#111;
+
+}
+
+.banner-imagem{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.banner-imagem img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.banner-imagem::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        90deg,
+        rgba(26,13,46,.92),
+        rgba(26,13,46,.55),
+        rgba(26,13,46,.25)
+    );
+
+}
+
+.banner-conteudo{
+
+    position:relative;
+
+    z-index:10;
+
+    width:90%;
+
+    max-width:1400px;
+
+}
+
+.banner-conteudo h2{
+
+    font-size:70px;
+
+    color:white;
+
+    font-family:'Playfair Display',serif;
+
+}
+
+.banner-conteudo p{
+
+    width:500px;
+
+    margin-top:15px;
+
+    color:var(--texto2);
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+/* =======================================
+MENU ESTILOS
+======================================= */
+
+.menu-estilos{
+
+    background:var(--roxo);
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:16px;
+
+    padding:35px;
+
+}
+
+.estilo-btn{
+
+    padding:14px 26px;
+
+    border-radius:30px;
+
+    background:transparent;
+
+    border:1px solid var(--borda);
+
+    color:var(--texto);
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.estilo-btn:hover{
+
+    background:var(--roxo3);
+
+    border-color:var(--rosa);
+
+    transform:translateY(-2px);
+
+}
+
+.estilo-btn.ativo{
+
+    background:var(--rosa);
+
+    color:white;
+
+    border-color:var(--rosa);
+
+}
+
+/* =======================================
+LAYOUT PRINCIPAL
+======================================= */
+
+.catalogo-container{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    gap:35px;
+
+    padding:45px;
+
+    background:var(--roxo);
+
+}
+
+/* =======================================
+FILTROS
+======================================= */
+
+.filtros{
+
+    background:var(--roxo2);
+
+    border:1px solid var(--borda);
+
+    border-radius:16px;
+
+    padding:25px;
+
+    height:max-content;
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+.filtros h3{
+
+    font-size:24px;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+.filtro-box{
+
+    margin-bottom:30px;
+
+}
+
+.filtro-box h4{
+
+    color:white;
+
+    margin-bottom:14px;
+
+    font-size:15px;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+}
+
+.filtro-box label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+    color:var(--texto2);
+
+    cursor:pointer;
+
+    font-size:14px;
+
+}
+
+.filtro-box input[type="checkbox"]{
+
+    accent-color:var(--rosa);
+
+}
+
+/* =======================================
+TAMANHOS
+======================================= */
+
+.tamanhos{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.tamanhos button{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:8px;
+
+    background:transparent;
+
+    border:1px solid var(--borda);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.tamanhos button:hover{
+
+    background:var(--rosa);
+
+}
+
+/* =======================================
+CORES
+======================================= */
+
+.cores{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+.cores span{
+
+    width:28px;
+
+    height:28px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.cores span:hover{
+
+    transform:scale(1.15);
+
+}
+
+/* =======================================
+SLIDER PREÇO
+======================================= */
+
+.filtro-box input[type="range"]{
+
+    width:100%;
+
+    accent-color:var(--rosa);
+
+    margin-top:10px;
+
+}
+
+.filtro-box p{
+
+    margin-top:12px;
+
+    color:var(--texto2);
+
+    font-size:14px;
+
+}
+/* =====================================================
+   PRODUTOS.CSS
+   PARTE 2
+   PRODUTOS + PAGINAÇÃO
+=====================================================*/
+
+/* ==========================
+ÁREA DOS PRODUTOS
+==========================*/
+
+.produtos-area{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* Cabeçalho */
+
+.produtos-topo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.produtos-topo p{
+
+    color:var(--texto2);
+
+    font-size:15px;
+
+}
+
+.produtos-topo strong{
+
+    color:white;
+
+}
+
+.produtos-topo select{
+
+    background:var(--roxo2);
+
+    color:white;
+
+    border:1px solid var(--borda);
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    outline:none;
+
+}
+
+.produtos-topo select:hover{
+
+    border-color:var(--rosa);
+
+}
+
+
+/* ==========================
+GRID
+==========================*/
+
+.produtos-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+
+/* ==========================
+CARD
+==========================*/
+
+.produto-card{
+
+    background:var(--roxo2);
+
+    border:1px solid var(--borda);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.30s;
+
+    cursor:pointer;
+
+}
+
+.produto-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--rosa);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+
+/* ==========================
+IMAGEM
+==========================*/
+
+.produto-img{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:3/4;
+
+    overflow:hidden;
+
+    background:#24113f;
+
+}
+
+.produto-img img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.35s;
+
+}
+
+.produto-card:hover .produto-img img{
+
+    transform:scale(1.06);
+
+}
+
+
+/* ==========================
+BOTÃO FAVORITO
+==========================*/
+
+.btn-fav{
+
+    position:absolute;
+
+    top:14px;
+
+    right:14px;
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(26,13,46,.75);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-fav:hover{
+
+    background:var(--rosa);
+
+    transform:scale(1.1);
+
+}
+
+
+/* ==========================
+INFORMAÇÕES
+==========================*/
+
+.produto-info{
+
+    padding:18px;
+
+}
+
+.produto-info h3{
+
+    color:white;
+
+    font-size:17px;
+
+    margin-bottom:8px;
+
+}
+
+.produto-estilo{
+
+    color:var(--texto2);
+
+    font-size:14px;
+
+    margin-bottom:15px;
+
+}
+
+.produto-preco{
+
+    color:var(--rosa);
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================
+EFEITO
+==========================*/
+
+.produto-card::after{
+
+    content:"";
+
+    display:block;
+
+    width:0;
+
+    height:3px;
+
+    background:var(--rosa);
+
+    transition:.3s;
+
+}
+
+.produto-card:hover::after{
+
+    width:100%;
+
+}
+
+
+/* ==========================
+PAGINAÇÃO
+==========================*/
+
+.paginacao{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:60px;
+
+}
+
+.pagina{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:12px;
+
+    border:1px solid var(--borda);
+
+    background:var(--roxo2);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.pagina:hover{
+
+    background:var(--rosa);
+
+    border-color:var(--rosa);
+
+}
+
+.pagina.ativa{
+
+    background:var(--rosa);
+
+    border-color:var(--rosa);
+
+}
+
+
+/* ==========================
+FOOTER
+==========================*/
+
+.footer{
+
+    margin-top:80px;
+
+    background:#13091f;
+
+    border-top:1px solid var(--borda);
+
+    padding:60px 50px 30px;
+
+}
+
+.footer{
+
+    display:grid;
+
+    grid-template-columns:1.5fr 2fr;
+
+    gap:60px;
+
+}
+
+.footer-logo img{
+
+    width:180px;
+
+    margin-bottom:20px;
+
+}
+
+.footer-logo p{
+
+    color:var(--texto2);
+
+    line-height:1.7;
+
+}
+
+.footer-links{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
+}
+
+.footer-links h4{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.footer-links a{
+
+    display:block;
+
+    color:var(--texto2);
+
+    text-decoration:none;
+
+    margin-bottom:12px;
+
+    transition:.25s;
+
+}
+
+.footer-links a:hover{
+
+    color:var(--rosa);
+
+}
+
+.footer-copy{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding-top:40px;
+
+    color:var(--texto2);
+
+    border-top:1px solid var(--borda);
+
+    margin-top:30px;
+
+}
+/*====================================================
+PRODUTOS.CSS
+PARTE 3
+RESPONSIVIDADE + ANIMAÇÕES
+====================================================*/
+
+/* ==========================
+ANIMAÇÕES
+==========================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+.banner-estilo{
+
+    animation:fade .8s ease;
+
+}
+
+.produto-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+/*==========================
+BOTÕES
+==========================*/
+
+.estilo-btn{
+
+    transition:
+    background .3s,
+    color .3s,
+    transform .25s,
+    box-shadow .3s;
+
+}
+
+.estilo-btn:hover{
+
+    box-shadow:0 0 18px rgba(224,102,160,.45);
+
+}
+
+.btn-fav:active{
+
+    transform:scale(.90);
+
+}
+
+.pagina:active{
+
+    transform:scale(.92);
+
+}
+
+/*==========================
+SCROLLBAR
+==========================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#170b28;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#7b4fa6;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#e066a0;
+
+}
+
+/*==========================
+FOCUS
+==========================*/
+
+button:focus,
+select:focus,
+input:focus{
+
+    outline:none;
+
+    box-shadow:
+    0 0 0 3px
+    rgba(224,102,160,.25);
+
+}
+
+/*==========================
+TRANSIÇÕES
+==========================*/
+
+*{
+
+    transition:
+    color .25s,
+    background .25s,
+    border-color .25s;
+
+}
+
+/*==========================
+TABLET
+==========================*/
+
+@media(max-width:1200px){
+
+.catalogo-container{
+
+grid-template-columns:240px 1fr;
+
+padding:30px;
+
+}
+
+.produtos-grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+.banner-conteudo h2{
+
+font-size:56px;
+
+}
+
+}
+
+/*==========================
+TABLET PEQUENO
+==========================*/
+
+@media(max-width:900px){
+
+.catalogo-container{
+
+grid-template-columns:1fr;
+
+}
+
+.filtros{
+
+position:relative;
+
+top:0;
+
+margin-bottom:35px;
+
+}
+
+.produtos-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.produtos-topo{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:18px;
+
+}
+
+.banner-estilo{
+
+height:320px;
+
+}
+
+.banner-conteudo h2{
+
+font-size:42px;
+
+}
+
+.banner-conteudo p{
+
+width:100%;
+
+font-size:15px;
+
+}
+
+}
+
+/*==========================
+CELULAR
+==========================*/
+
+@media(max-width:600px){
+
+.catalogo-topo{
+
+padding:30px 20px;
+
+}
+
+.catalogo-topo h1{
+
+font-size:32px;
+
+}
+
+.menu-estilos{
+
+padding:20px;
+
+gap:10px;
+
+}
+
+.estilo-btn{
+
+width:100%;
+
+}
+
+.banner-estilo{
+
+height:260px;
+
+}
+
+.banner-conteudo{
+
+padding:20px;
+
+}
+
+.banner-conteudo h2{
+
+font-size:34px;
+
+}
+
+.banner-conteudo p{
+
+font-size:14px;
+
+line-height:1.5;
+
+}
+
+.produtos-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.produtos-topo select{
+
+width:100%;
+
+}
+
+.footer{
+
+grid-template-columns:1fr;
+
+padding:40px 20px;
+
+}
+
+.footer-links{
+
+grid-template-columns:1fr;
+
+gap:25px;
+
+}
+
+.footer-copy{
+
+margin-top:25px;
+
+padding-top:25px;
+
+font-size:13px;
+
+}
+
+}
+
+/*==========================
+TELAS MUITO GRANDES
+==========================*/
+
+@media(min-width:1700px){
+
+.catalogo-container{
+
+max-width:1700px;
+
+margin:auto;
+
+}
+
+.banner-conteudo{
+
+max-width:1700px;
+
+}
+
+}
+
+/*==========================
+BANNER ESCURO
+==========================*/
+
+.banner-estilo::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(
+
+90deg,
+
+rgba(26,13,46,.80),
+
+rgba(26,13,46,.45),
+
+rgba(26,13,46,.15)
+
+);
+
+z-index:1;
+
+}
+
+.banner-conteudo{
+
+position:relative;
+
+z-index:2;
+
+}
+
+/*==========================
+HOVER NAS IMAGENS
+==========================*/
+
+.produto-img{
+
+overflow:hidden;
+
+}
+
+.produto-img img{
+
+transition:transform .4s ease;
+
+}
+
+.produto-card:hover img{
+
+transform:scale(1.08);
+
+}
+
+/*==========================
+SOMBRA GERAL
+==========================*/
+
+.produto-card{
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.18);
+
+}
+
+.produto-card:hover{
+
+box-shadow:
+
+0 20px 45px rgba(0,0,0,.45);
+
+}
+
