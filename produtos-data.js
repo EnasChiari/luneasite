@@ -257,7 +257,7 @@ const PRODUTOS = [
       { nome: "Preto", hex: "#1a1a1a" }
     ],
     imagens: [
-      "Grunge Punk Botas Góticas Punk de Rock Escuro para Mulheres, Botas de Tornozelo de Bico Fino, Botas de Tornozelo com Salto Anabela e Sola Grossa, Fivela Tira, Botas de Montaria de Tornozelo e Botas de Tornozelo para o Natal Y2K.jpg",
+      "GD2XGC~F.JPG",
       "SUA_IMAGEM_P7_FOTO2.jpg",
       "SUA_IMAGEM_P7_FOTO3.jpg",
       "SUA_IMAGEM_P7_FOTO4.jpg",
