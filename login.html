@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Lunéa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="js/lunea-navigation.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --deep:   #0f0820;
+      --mid:    #1e0f38;
+      --card:   #140b28;
+      --accent: #9b6dc5;
+      --pink:   #e066a0;
+      --light:  #f0e6ff;
+      --muted:  #c9aee8;
+    }
+    body { font-family:'Inter',sans-serif; background:var(--deep); color:var(--light); min-height:100vh; }
+
+    /* ── ANNOUNCEMENT ── */
+    .announcement-bar {
+      background:#1a0d2e; display:grid; grid-template-columns:1fr 1fr 1fr;
+      align-items:center; padding:8px 32px; font-size:11.5px; font-weight:500;
+      letter-spacing:.04em; color:var(--muted); border-bottom:1px solid rgba(155,109,197,.15);
+    }
+    .announcement-bar span:nth-child(1){ display:flex; align-items:center; gap:6px; }
+    .announcement-bar span:nth-child(2){ text-align:center; color:var(--pink); font-weight:600; }
+    .announcement-bar span:nth-child(3){ text-align:right; }
+
+    /* ── HEADER ── */
+    header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 48px; background:rgba(15,8,32,.95);
+      backdrop-filter:blur(8px); position:sticky; top:0; z-index:200;
+      border-bottom:1px solid rgba(155,109,197,.12);
+    }
+    /* LOGO — substitua src */
+    .logo img { height:62px; width:auto; object-fit:contain; display:block; }
+
+    .header-search {
+      display:flex; align-items:center; gap:0;
+      background:rgba(35,18,58,.7); border:1.5px solid rgba(155,109,197,.25);
+      border-radius:6px; overflow:hidden; width:260px;
+    }
+    .header-search input {
+      flex:1; background:transparent; border:none; outline:none; padding:9px 14px;
+      font-family:'Inter',sans-serif; font-size:12px; color:var(--light);
+    }
+    .header-search input::placeholder { color:rgba(201,174,232,.4); }
+    .header-search button { background:none; border:none; padding:9px 12px;
+      cursor:pointer; color:var(--muted); display:flex; align-items:center; }
+    .header-search button svg { width:16px; height:16px; }
+
+    nav { display:flex; align-items:center; gap:28px; }
+    nav a { text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted); transition:color .2s; }
+    nav a:hover { color:var(--light); }
+
+    .header-icons { display:flex; align-items:center; gap:18px; }
+    .header-icons button { background:none; border:none; cursor:pointer;
+      color:var(--muted); padding:4px; position:relative; }
+    .header-icons button:hover { color:var(--light); }
+    .header-icons svg { width:20px; height:20px; }
+    .cart-badge { position:absolute; top:-4px; right:-4px; background:var(--pink);
+      color:#fff; font-size:9px; font-weight:700; width:16px; height:16px;
+      border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+    /* ── MAIN ── */
+    .main {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 120px);
+    }
+
+    /* ── LADO ESQUERDO ── */
+    .lado-esq {
+      position:relative; overflow:hidden;
+      background: linear-gradient(135deg, #0f0820 0%, #1a0d2e 100%);
+      padding:60px 52px;
+      display:flex; flex-direction:column; justify-content:center; gap:40px;
+    }
+
+    /* estrelinhas decorativas */
+    .deco { position:absolute; pointer-events:none; }
+    .deco.tl { top:30px; left:40px; font-size:13px; color:rgba(155,109,197,.4); }
+    .deco.tr { top:50px; right:50px; font-size:9px; color:rgba(155,109,197,.3); }
+    .deco.bl { bottom:60px; left:60px; font-size:10px; color:rgba(155,109,197,.3); }
+
+    /* fotos polaroid */
+    .fotos-wrap {
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:300px;
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:16px;
+      padding:20px 0;
+    }
+    .polaroid {
+      background:#fff; padding:8px 8px 28px; border-radius:2px;
+      box-shadow:0 8px 32px rgba(0,0,0,.5);
+      transform:rotate(-3deg);
+      width:160px;
+    }
+    .polaroid:nth-child(2) { transform:rotate(2deg); margin-left:30px; }
+    .polaroid:nth-child(3) { transform:rotate(-1.5deg); margin-left:10px; }
+    /*
+      FOTOS DO LADO ESQUERDO
+      Substitua cada src:
+      src="./imagens/login-foto1.jpg"
+    */
+    .polaroid img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; }
+
+    .texto-esq { margin-left:220px; }
+    .texto-esq h2 {
+      font-family:'Playfair Display',serif;
+      font-size:34px; font-weight:900; line-height:1.15; color:var(--light);
+      margin-bottom:12px;
+    }
+    .texto-esq h2 .pink { color:var(--pink); }
+    .texto-esq h2 .sparkle { color:var(--accent); font-size:22px; }
+    .texto-esq p { font-size:13.5px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:28px; }
+
+    .beneficios { display:flex; flex-direction:column; gap:16px; margin-left:220px; }
+    .beneficio { display:flex; align-items:flex-start; gap:14px; }
+    .beneficio-icon {
+      width:36px; height:36px; border-radius:8px;
+      border:1.5px solid rgba(155,109,197,.3);
+      background:rgba(35,18,58,.6);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; font-size:16px;
+    }
+    .beneficio p { font-size:13px; font-weight:400; color:var(--muted); line-height:1.5; }
+    .beneficio p strong { color:var(--light); display:block; }
+
+    .slogan {
+      margin-left:220px;
+      font-family:'Playfair Display',serif;
+      font-style:italic; font-size:15px; color:rgba(201,174,232,.55);
+      display:flex; align-items:center; gap:8px;
+    }
+
+    /* ── LADO DIREITO ── */
+    .lado-dir {
+      background: rgba(20,11,40,.85);
+      border-left:1px solid rgba(155,109,197,.12);
+      display:flex; align-items:center; justify-content:center;
+      padding:48px 60px;
+      position:relative; overflow:hidden;
+    }
+
+    /* estrelinhas fundo direito */
+    .lado-dir::before {
+      content:'✦   ✦   ✦';
+      position:absolute; top:30px; right:40px;
+      font-size:10px; color:rgba(155,109,197,.2); letter-spacing:10px;
+    }
+
+    /* borboleta e lua decorativas */
+    .deco-dir { position:absolute; pointer-events:none; opacity:.15; font-size:40px; }
+    .deco-dir.lua { bottom:80px; right:30px; }
+    .deco-dir.bfly { top:120px; right:20px; font-size:28px; }
+
+    .form-box { width:100%; max-width:460px; }
+
+    .form-titulo {
+      text-align:center; margin-bottom:28px;
+    }
+    .form-titulo h1 {
+      font-family:'Playfair Display',serif;
+      font-size:38px; font-weight:700; color:var(--pink);
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    .form-titulo h1 .sparkle { color:var(--accent); font-size:22px; }
+    .form-titulo p { font-size:13px; font-weight:300; color:var(--muted);
+      margin-top:8px; line-height:1.6; }
+
+    /* campos */
+    .campo { margin-bottom:18px; }
+    .campo label { display:block; font-size:11px; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase; color:var(--light);
+      margin-bottom:8px; }
+    .input-wrap {
+      display:flex; align-items:center; gap:0;
+      background:rgba(35,18,58,.7); border:1.5px solid rgba(155,109,197,.25);
+      border-radius:8px; overflow:hidden; transition:border-color .2s;
+    }
+    .input-wrap:focus-within { border-color:rgba(155,109,197,.65); }
+    .input-wrap .icon {
+      padding:0 14px; color:rgba(155,109,197,.5); display:flex;
+      align-items:center; flex-shrink:0;
+    }
+    .input-wrap .icon svg { width:16px; height:16px; }
+    .input-wrap input {
+      flex:1; background:transparent; border:none; outline:none;
+      padding:13px 0; font-family:'Inter',sans-serif; font-size:13.5px; color:var(--light);
+    }
+    .input-wrap input::placeholder { color:rgba(201,174,232,.35); }
+    .toggle-senha { padding:0 14px; background:none; border:none; cursor:pointer;
+      color:rgba(155,109,197,.5); display:flex; align-items:center; }
+    .toggle-senha svg { width:16px; height:16px; }
+    .toggle-senha:hover { color:var(--muted); }
+
+    .lembrar-row {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:22px;
+    }
+    .lembrar-label { display:flex; align-items:center; gap:8px;
+      cursor:pointer; font-size:12.5px; color:var(--muted); }
+    .lembrar-label input[type="checkbox"] {
+      appearance:none; width:16px; height:16px;
+      border:1.5px solid rgba(155,109,197,.45); border-radius:3px;
+      background:transparent; cursor:pointer; position:relative; flex-shrink:0;
+      transition:all .15s;
+    }
+    .lembrar-label input[type="checkbox"]:checked { background:var(--pink); border-color:var(--pink); }
+    .lembrar-label input[type="checkbox"]:checked::after {
+      content:'✓'; position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:10px; color:#fff; font-weight:800;
+    }
+    .esqueceu { font-size:12px; color:var(--pink); text-decoration:none; transition:opacity .2s; }
+    .esqueceu:hover { opacity:.75; }
+
+    .btn-entrar {
+      width:100%; padding:15px; background:var(--pink); color:#fff; border:none;
+      border-radius:8px; font-family:'Inter',sans-serif; font-size:13px;
+      font-weight:800; letter-spacing:.1em; cursor:pointer; margin-bottom:16px;
+      display:flex; align-items:center; justify-content:center; gap:14px;
+      transition:background .2s, transform .15s;
+    }
+    .btn-entrar:hover { background:#d4568e; transform:translateY(-1px); }
+    .btn-entrar .plus { font-size:16px; opacity:.7; }
+
+    .ou { text-align:center; font-size:12px; color:rgba(201,174,232,.45);
+      margin-bottom:14px; position:relative; }
+    .ou::before, .ou::after {
+      content:''; position:absolute; top:50%;
+      width:38%; height:1px; background:rgba(155,109,197,.15);
+    }
+    .ou::before { left:0; }
+    .ou::after  { right:0; }
+
+    .social-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+    .btn-social {
+      padding:11px 16px; background:rgba(255,255,255,.04);
+      border:1.5px solid rgba(155,109,197,.2); border-radius:8px;
+      color:var(--light); font-family:'Inter',sans-serif; font-size:12.5px;
+      font-weight:600; cursor:pointer; display:flex; align-items:center;
+      justify-content:center; gap:9px; transition:all .18s;
+    }
+    .btn-social:hover { background:rgba(255,255,255,.08); border-color:rgba(155,109,197,.4); }
+    .btn-social img { width:18px; height:18px; object-fit:contain; }
+    /* ícones inline SVG para Google, Apple, TikTok, Facebook */
+    .btn-social svg { width:18px; height:18px; flex-shrink:0; }
+
+    .criar-conta { text-align:center; font-size:13px; color:var(--muted); }
+    .criar-conta a { color:var(--pink); text-decoration:none; font-weight:700;
+      letter-spacing:.04em; transition:opacity .2s; }
+    .criar-conta a:hover { opacity:.8; }
+
+    /* ── BARRA BENEFÍCIOS ── */
+    .beneficios-bar {
+      background:#0f0820; border-top:1px solid rgba(155,109,197,.1);
+      display:grid; grid-template-columns:repeat(4,1fr);
+      padding:20px 40px; gap:12px;
+    }
+    .benef-item { display:flex; align-items:center; gap:14px; }
+    .benef-sep { color:rgba(155,109,197,.2); font-size:20px; text-align:center; }
+    .benef-item svg { width:34px; height:34px; flex-shrink:0; color:var(--accent); }
+    .benef-item strong { display:block; font-size:11px; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase; color:var(--light); }
+    .benef-item strong span { color:var(--pink); }
+    .benef-item small { font-size:11px; color:var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background:#0a0618; border-top:1px solid rgba(155,109,197,.1);
+      padding:44px 48px 20px;
+    }
+    .footer-grid {
+      display:grid; grid-template-columns:240px 1fr 1fr 1fr 260px;
+      gap:40px; margin-bottom:36px;
+    }
+    .footer-logo img { height:58px; width:auto; object-fit:contain; margin-bottom:14px; }
+    .footer-desc { font-size:12.5px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:16px; }
+    .footer-social { display:flex; gap:14px; }
+    .footer-social a { color:var(--accent); font-size:16px; text-decoration:none; transition:color .2s; }
+    .footer-social a:hover { color:var(--pink); }
+    .footer-social svg { width:18px; height:18px; }
+
+    .footer-col h4 { font-size:11px; font-weight:700; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--light); margin-bottom:14px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .footer-col ul li a { font-size:12.5px; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .footer-col ul li a:hover { color:var(--light); }
+
+    .footer-newsletter h4 { font-size:11px; font-weight:700; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--light); margin-bottom:6px;
+      display:flex; align-items:center; gap:6px; }
+    .footer-newsletter h4 span { color:var(--pink); }
+    .footer-newsletter p { font-size:12px; font-weight:300; color:var(--muted);
+      line-height:1.6; margin-bottom:14px; }
+    .footer-newsletter p strong { color:var(--light); font-weight:700; }
+    .newsletter-form { display:flex; overflow:hidden; border-radius:6px;
+      border:1.5px solid rgba(155,109,197,.3); margin-bottom:12px; }
+    .newsletter-form input { flex:1; background:rgba(35,18,58,.7); border:none; outline:none;
+      padding:10px 14px; font-family:'Inter',sans-serif; font-size:12px; color:var(--light); }
+    .newsletter-form input::placeholder { color:rgba(201,174,232,.35); }
+    .newsletter-form button { background:var(--pink); border:none; padding:10px 16px;
+      cursor:pointer; color:#fff; font-size:16px; transition:background .2s; }
+    .newsletter-form button:hover { background:#d4568e; }
+    .footer-tagline { font-size:11px; font-style:italic; color:rgba(201,174,232,.45);
+      display:flex; align-items:center; gap:6px; }
+
+    .footer-bottom { border-top:1px solid rgba(155,109,197,.08); padding-top:18px;
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:11px; color:rgba(201,174,232,.35); }
+    .footer-bottom-deco { display:flex; align-items:center; gap:8px;
+      color:rgba(155,109,197,.2); font-size:14px; letter-spacing:4px; }
+
+    /* mensagem de erro */
+    .msg-erro { background:rgba(192,57,43,.15); border:1px solid rgba(192,57,43,.3);
+      border-radius:6px; padding:10px 14px; font-size:12.5px; color:#e88; margin-bottom:14px;
+      display:none; }
+    .msg-erro.show { display:block; }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <span>✦ FRETE GRÁTIS ACIMA DE R$199</span>
+    <span>10% OFF NA PRIMEIRA COMPRA | CUPOM: LUNEA10</span>
+    <span>ENTREGA PARA TODO O BRASIL ♡</span>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <!-- LOGO: substitua src -->
+      <a href="index.html"><img src="Logo.png" alt="Lunéa" /></a>
+    </div>
+
+    <nav>
+      <a href="novidades.html">Novidades</a>
+      <a href="produtos.html?categoria=roupas">Roupas</a>
+      <a href="produtos.html?categoria=acessorios">Acessórios</a>
+      <a href="produtos.html?categoria=calcados">Calçados</a>
+      <a href="colecoes.html">Coleções</a>
+      <a href="produtos.html?categoria=outlet">Outlet</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="header-search">
+        <input type="text" placeholder="Buscar produtos..." id="busca-header" />
+        <button onclick="buscar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+      <div class="header-icons">
+        <button aria-label="Minha conta" onclick="location.href='login.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </button>
+        <button aria-label="Carrinho" onclick="location.href='carrinho.html'" style="position:relative;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge">3</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- ── LADO ESQUERDO ── -->
+    <div class="lado-esq">
+      <div class="deco tl">✦ &nbsp; ✦</div>
+      <div class="deco tr">✦</div>
+      <div class="deco bl">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+      <!-- FOTOS POLAROID
+           Substitua cada src pela sua foto
+           Exemplo: src="./imagens/login1.jpg" -->
+      <div class="fotos-wrap">
+        <div class="polaroid">
+          <img src="SUA_IMAGEM_LOGIN_1.jpg" alt="Look 1" />
+        </div>
+        <div class="polaroid">
+          <img src="SUA_IMAGEM_LOGIN_2.jpg" alt="Look 2" />
+        </div>
+        <div class="polaroid">
+          <img src="SUA_IMAGEM_LOGIN_3.jpg" alt="Look 3" />
+        </div>
+      </div>
+
+      <div class="texto-esq">
+        <h2>
+          Bem-vinda<br>
+          de volta, <span class="pink">estrela.</span>
+          <span class="sparkle"> ✦</span>
+        </h2>
+        <p>Faça login e continue montando<br>seu estilo com a Lunéa.</p>
+      </div>
+
+      <div class="beneficios">
+        <div class="beneficio">
+          <div class="beneficio-icon">🤍</div>
+          <p><strong>Salve seus looks e favoritos</strong></p>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-icon">🛍️</div>
+          <p><strong>Acompanhe seus pedidos em tempo real</strong></p>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-icon">%</div>
+          <p><strong>Receba ofertas e novidades exclusivas</strong></p>
+        </div>
+      </div>
+
+      <div class="slogan">
+        seu estilo, suas regras. &nbsp; 🌙
+      </div>
+    </div>
+
+    <!-- ── LADO DIREITO ── -->
+    <div class="lado-dir">
+      <div class="deco-dir lua">🌙</div>
+      <div class="deco-dir bfly">🦋</div>
+
+      <div class="form-box">
+
+        <div class="form-titulo">
+          <h1><span class="sparkle">✦</span> Login <span class="sparkle">✦</span></h1>
+          <p>Que bom te ver por aqui! Faça login<br>e aproveite tudo que é seu.</p>
+        </div>
+
+        <div class="msg-erro" id="msg-erro">E-mail ou senha incorretos. Tente novamente.</div>
+
+        <!-- E-MAIL -->
+        <div class="campo">
+          <label for="input-email">E-MAIL</label>
+          <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="2,4 12,13 22,4"/>
+              </svg>
+            </span>
+            <input type="email" id="input-email" placeholder="seu@email.com" autocomplete="email" />
+          </div>
+        </div>
+
+        <!-- SENHA -->
+        <div class="campo">
+          <label for="input-senha">SENHA</label>
+          <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input type="password" id="input-senha" placeholder="Digite sua senha" autocomplete="current-password" />
+            <button class="toggle-senha" id="toggle-senha" type="button" aria-label="Ver senha">
+              <svg id="olho-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- LEMBRAR + ESQUECEU -->
+        <div class="lembrar-row">
+          <label class="lembrar-label">
+            <input type="checkbox" id="lembrar" checked />
+            Lembrar de mim
+          </label>
+          <a href="esqueceu-senha.html" class="esqueceu">Esqueceu sua senha?</a>
+        </div>
+
+        <!-- BOTÃO ENTRAR -->
+        <button class="btn-entrar" id="btn-entrar">
+          <span class="plus">+</span>
+          ENTRAR
+          <span class="plus">+</span>
+        </button>
+
+        <!-- SOCIAL -->
+        <div class="ou">ou continue com</div>
+        <div class="social-grid">
+          <button class="btn-social">
+            <!-- Google -->
+            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google
+          </button>
+          <button class="btn-social">
+            <!-- Apple -->
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple
+          </button>
+          <button class="btn-social">
+            <!-- TikTok -->
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+            TikTok
+          </button>
+          <button class="btn-social">
+            <!-- Facebook -->
+            <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </button>
+        </div>
+
+        <div class="criar-conta">
+          Ainda não tem conta? <a href="cadastro.html">CRIAR CONTA →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BARRA BENEFÍCIOS -->
+  <div class="beneficios-bar">
+    <div class="benef-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <div><strong>PAGAMENTO SEGURO</strong><small>Ambiente 100% seguro</small></div>
+    </div>
+    <div class="benef-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+      </svg>
+      <div><strong>PARCELE EM ATÉ <span>6X</span></strong><small>Sem juros no cartão</small></div>
+    </div>
+    <div class="benef-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+        <path d="M3 3v5h5"/>
+      </svg>
+      <div><strong>TROCA FÁCIL</strong><small>Até 7 dias para trocar</small></div>
+    </div>
+    <div class="benef-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
+      <div><strong>ATENDIMENTO HUMANO</strong><small>Suporte que entende você</small></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <!-- LOGO FOOTER: substitua src -->
+          <img src="SEU_LOGO_AQUI.png" alt="Lunéa" />
+        </div>
+        <p class="footer-desc">Moda alternativa é sobre expressão, não padrão. Vista seu estilo, sua essência, sua verdade.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4c0 3-2 5-4 5-.7 0-1.4-.2-2-.5l-1 4"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M4 4l16 16M4 20L20 4"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <rect x="2" y="7" width="20" height="14" rx="3"/>
+              <polygon points="10,10 16,14 10,18" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Compre</h4>
+        <ul>
+          <li><a href="novidades.html">Novidades</a></li>
+          <li><a href="produtos.html?categoria=roupas">Roupas</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+          <li><a href="produtos.html?categoria=calcados">Calçados</a></li>
+          <li><a href="colecoes.html">Coleções</a></li>
+          <li><a href="produtos.html?categoria=outlet">Outlet</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="ajuda.html">Central de Ajuda</a></li>
+          <li><a href="trocas.html">Trocas e Devoluções</a></li>
+          <li><a href="rastreamento.html">Rastreamento</a></li>
+          <li><a href="pagamento.html">Formas de Pagamento</a></li>
+          <li><a href="privacidade.html">Política de Privacidade</a></li>
+          <li><a href="termos.html">Termos de Uso</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sobre Nós</h4>
+        <ul>
+          <li><a href="sobre.html">Nossa História</a></li>
+          <li><a href="estilos.html">Guia de Estilo</a></li>
+          <li><a href="blog.html">Blog Lunéa</a></li>
+          <li><a href="trabalhe.html">Trabalhe Conosco</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>RECEBA NOVIDADES E OFERTAS <span>+</span></h4>
+        <p>Cadastre seu e-mail e ganhe <strong>10% OFF</strong> na sua primeira compra!</p>
+        <div class="newsletter-form">
+          <input type="email" id="nl-email" placeholder="seu melhor e-mail" />
+          <button onclick="assinarNewsletter()">→</button>
+        </div>
+        <div class="footer-tagline">🌙 você é única. seu estilo também.</div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Lunéa Moda Alternativa. Todos os direitos reservados.</p>
+      <div class="footer-bottom-deco">🌙 ✦ ✦ ✦</div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── TOGGLE SENHA ── */
+    const toggleBtn  = document.getElementById('toggle-senha');
+    const inputSenha = document.getElementById('input-senha');
+    const olhoIcon   = document.getElementById('olho-icon');
+
+    toggleBtn.addEventListener('click', () => {
+      const mostrar = inputSenha.type === 'password';
+      inputSenha.type = mostrar ? 'text' : 'password';
+      olhoIcon.innerHTML = mostrar
+        ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`
+        : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+    });
+
+    /* ── LOGIN ── */
+    document.getElementById('btn-entrar').addEventListener('click', fazerLogin);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') fazerLogin();
+    });
+
+    function fazerLogin() {
+      const email = document.getElementById('input-email').value.trim();
+      const senha = document.getElementById('input-senha').value;
+      const erro  = document.getElementById('msg-erro');
+
+      if (!email || !senha) {
+        erro.textContent = 'Preencha e-mail e senha para continuar.';
+        erro.classList.add('show');
+        return;
+      }
+
+      // ── Simulação de login ──
+      // Troque esta lógica pela integração com seu backend/autenticação real
+      const usuariosSalvos = JSON.parse(localStorage.getItem('lunea-usuarios') || '[]');
+      const usuario = usuariosSalvos.find(u => u.email === email && u.senha === senha);
+
+      if (usuario) {
+        erro.classList.remove('show');
+        localStorage.setItem('lunea-logado', JSON.stringify(usuario));
+        // redireciona para onde veio ou para a home
+        const destino = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+        window.location.href = destino;
+      } else {
+        erro.textContent = 'E-mail ou senha incorretos. Tente novamente.';
+        erro.classList.add('show');
+      }
+    }
+
+    /* ── SOCIAL (placeholder — conecte sua auth real) ── */
+    document.querySelectorAll('.btn-social').forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert('Integração com ' + btn.textContent.trim() + ' em breve!');
+      });
+    });
+
+    /* ── BUSCA ── */
+    function buscar() {
+      const termo = document.getElementById('busca-header').value.trim();
+      if (termo) window.location.href = `produtos.html?busca=${encodeURIComponent(termo)}`;
+    }
+    document.getElementById('busca-header').addEventListener('keydown', e => {
+      if (e.key === 'Enter') buscar();
+    });
+
+    /* ── NEWSLETTER ── */
+    function assinarNewsletter() {
+      const email = document.getElementById('nl-email').value.trim();
+      if (!email) return;
+      window.location.href = `cadastro.html?email=${encodeURIComponent(email)}`;
+    }
+
+    /* ── E-MAIL PRÉ-PREENCHIDO (vindo da newsletter) ── */
+    const emailURL = new URLSearchParams(window.location.search).get('email');
+    if (emailURL) document.getElementById('input-email').value = decodeURIComponent(emailURL);
+  </script>
+
+</body>
+</html>
