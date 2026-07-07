@@ -409,12 +409,8 @@ nav .nav-item {
 .menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
 .menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 960px) {
-  header { padding: 14px 20px; flex-wrap: wrap; }
-  .logo img { height: 46px; }
-  .hamburger { display: flex; }
-
-  nav {
+    @media (max-width: 960px) {
+   nav {
     order: 4;
     flex-basis: 100%;
     flex-direction: column;
@@ -425,17 +421,39 @@ nav .nav-item {
     transition: max-height .3s ease;
   }
   .menu-toggle:checked ~ nav {
-    max-height: 400px;
+    max-height: 1600px;
     margin-top: 14px;
-    padding-bottom: 10px;
+    padding-bottom: 14px;
   }
-  nav a {
+  nav .nav-item { width: 100%; }
+  nav > .nav-item > a {
     display: block;
-    width: 100%;
     padding: 12px 4px;
     border-bottom: 1px solid rgba(155,109,197,.15);
   }
-
+  .nav-dropdown {
+    position: static;
+    transform: none !important;
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 4px 0 10px 14px;
+    min-width: 0;
+  }
+  .nav-dropdown::before, .nav-dropdown::after { display: none; }
+      
+      .announcement-bar {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 4px;
+        padding: 8px 16px;
+      }
+      .announcement-bar span:nth-child(1),
+      .announcement-bar span:nth-child(2),
+      .announcement-bar span:nth-child(3) { justify-content:center; text-align: center; }
   .announcement-bar {
     grid-template-columns: 1fr;
     text-align: center;
