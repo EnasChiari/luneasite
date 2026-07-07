@@ -36,19 +36,157 @@
       border-bottom:1px solid rgba(155,109,197,.15);
     }
     .logo img { height:62px; width:auto; object-fit:contain; display:block; }
-    nav { display:flex; align-items:center; gap:32px; }
-    nav a { text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.12em;
-      text-transform:uppercase; color:var(--muted); transition:color .2s; }
-    nav a:hover { color:var(--light); }
-    .header-icons { display:flex; align-items:center; gap:20px; }
-    .header-icons button { background:none; border:none; cursor:pointer; color:var(--muted); padding:4px; }
-    .header-icons button:hover { color:var(--light); }
-    .header-icons svg { width:20px; height:20px; }
-    .cart-btn { position:relative; }
-    .cart-badge { position:absolute; top:-4px; right:-4px; background:var(--pink);
-      color:#fff; font-size:9px; font-weight:700; width:16px; height:16px;
-      border-radius:50%; display:flex; align-items:center; justify-content:center; }
+nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+nav a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--text-light); }
 
+
+nav .nav-item {
+  position: relative;
+}
+
+/* ── DROPDOWN ── */
+.nav-dropdown{
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e0f38;
+  border: 1.5px solid rgba(155, 109, 197, 0.28);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 999;
+  box-shadow: 0 12px 32px rgba(10, 4, 20, 0.6);
+
+  /* animação */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  pointer-events: all;
+}
+
+
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(155, 109, 197, 0.28);
+}
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1e0f38;
+}
+
+
+.nav-item:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c9aee8;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  background: rgba(155, 109, 197, 0.12);
+  color: #f0e6ff;
+}
+
+.nav-dropdown a .dd-icon {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* separador */
+.nav-dropdown .dd-sep {
+  height: 1px;
+  background: rgba(155, 109, 197, 0.15);
+  margin: 5px 12px;
+}
+
+
+.nav-dropdown a .dd-tag {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 20px;
+  background: #e066a0;
+  color: #fff;
+}
+.nav-dropdown a .dd-tag.green {
+  background: #2d7a4f;
+}
+
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-icons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  padding: 4px;
+}
+.header-icons button:hover { color: var(--text-light); }
+.header-icons svg { width: 20px; height: 20px; }
+.cart-btn { position: relative; }
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--pink-accent);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 650;
+  width: 16px;
+  height: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     /* ── BREADCRUMB ── */
     .breadcrumb { padding:14px 48px; display:flex; align-items:center; gap:8px;
       font-size:12px; color:var(--muted); }
