@@ -30,28 +30,26 @@
     .announcement-bar span:nth-child(3){ text-align:right; }
 
     /* ── HEADER ── */
-    header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 48px; background:rgba(15,8,32,.95);
-      backdrop-filter:blur(8px); position:sticky; top:0; z-index:200;
-      border-bottom:1px solid rgba(155,109,197,.12);
-    }
-    /* LOGO — substitua src */
-    .logo img { height:62px; width:auto; object-fit:contain; display:block; }
+ header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(26, 13, 46, 0.88);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(155, 109, 197, 0.15);
+}
 
-    .header-search {
-      display:flex; align-items:center; gap:0;
-      background:rgba(35,18,58,.7); border:1.5px solid rgba(155,109,197,.25);
-      border-radius:6px; overflow:hidden; width:260px;
-    }
-    .header-search input {
-      flex:1; background:transparent; border:none; outline:none; padding:9px 14px;
-      font-family:'Inter',sans-serif; font-size:12px; color:var(--light);
-    }
-    .header-search input::placeholder { color:rgba(201,174,232,.4); }
-    .header-search button { background:none; border:none; padding:9px 12px;
-      cursor:pointer; color:var(--muted); display:flex; align-items:center; }
-    .header-search button svg { width:16px; height:16px; }
+
+.logo img {
+  height: 64px;   
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 
 nav {
   display: flex;
@@ -204,13 +202,6 @@ nav .nav-item {
   align-items: center;
   justify-content: center;
 }
-    /* ── MAIN ── */
-    .main {
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 120px);
-    }
-
     /* ── LADO ESQUERDO ── */
     .lado-esq {
       position:relative; overflow:hidden;
