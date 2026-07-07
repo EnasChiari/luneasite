@@ -369,31 +369,103 @@
       <span></span><span></span><span></span>
     </label>
     <nav>
-      <a href="novidades.html">Novidades</a>
-      <a href="produtos.html?categoria=roupas">Roupas</a>
-      <a href="produtos.html?categoria=acessorios">Acessórios</a>
-      <a href="produtos.html?categoria=calcados">Calçados</a>
-      <a href="colecoes.html">Coleções</a>
-      <a href="produtos.html?categoria=outlet">Outlet</a>
-    </nav>
+
+  <!-- NOVIDADES -->
+  <div class="nav-item">
+    <a href="novidades">Novidades</a>
+  </div>
+
+  <!-- ROUPAS -->
+  <div class="nav-item">
+    <a href="roupa">Roupas</a>
+    <div class="nav-dropdown">
+      <a href="produtos.html?categoria=roupas&tipo=tops"><span class="dd-icon"></span> Tops & Cropped</a>
+      <a href="produtos.html?categoria=roupas&tipo=calcas"><span class="dd-icon"></span> Calças</a>
+      <a href="produtos.html?categoria=roupas&tipo=short"><span class="dd-icon"></span>Shorts</a>
+      <a href="produtos.html?categoria=roupas&tipo=saias"><span class="dd-icon"></span>Saias</a>
+      <a href="produtos.html?categoria=roupas&tipo=vestidos"><span class="dd-icon"></span> Vestidos</a>
+      <a href="produtos.html?categoria=roupas&tipo=moletom"><span class="dd-icon"></span> Moletons</a>
+      <a href="produtos.html?categoria=roupas&tipo=espartilho"><span class="dd-icon"></span> Espartilho/Corset & Corselet</a>
+      <div class="dd-sep"></div>
+      <a href="produtos.html?categoria=roupas"><span class="dd-icon">✦</span> Ver tudo</a>
+    </div>
+  </div>
+
+  <!-- ACESSÓRIOS -->
+  <div class="nav-item">
+    <a href="acessorios">Acessórios</a>
+    <div class="nav-dropdown">
+      <a href="produtos.html?categoria=acessorios&tipo=colares"><span class="dd-icon"></span> Colares</a>
+      <a href="produtos.html?categoria=acessorios&tipo=pulseiras"><span class="dd-icon"></span> Pulseiras</a>
+      <a href="produtos.html?categoria=acessorios&tipo=brincos"><span class="dd-icon"></span> Brincos</a>
+      <a href="produtos.html?categoria=acessorios&tipo=bolsas"><span class="dd-icon"></span> Bolsas</a>
+      <a href="produtos.html?categoria=acessorios&tipo=chapeus"><span class="dd-icon"></span> Chapéus & Bonés</a>
+      <a href="produtos.html?categoria=acessorios&tipo=cintos"><span class="dd-icon"></span> Cintos</a>
+      <a href="produtos.html?categoria=acessorios&tipo=oculos"><span class="dd-icon"></span> Óculos</a>
+      <div class="dd-sep"></div>
+      <a href="produtos.html?categoria=acessorios"><span class="dd-icon">✦</span> Ver tudo</a>
+    </div>
+  </div>
+
+  <!-- CALÇADOS -->
+  <div class="nav-item">
+    <a href="calcados">Calçados</a>
+    <div class="nav-dropdown">
+      <a href="produtos.html?categoria=calcados&tipo=tenis"><span class="dd-icon"></span> Tênis</a>
+      <a href="produtos.html?categoria=calcados&tipo=botas"><span class="dd-icon"></span> Botas</a>
+      <a href="produtos.html?categoria=calcados&tipo=plataforma"><span class="dd-icon"></span> Plataforma</a>
+      <a href="produtos.html?categoria=calcados&tipo=sandalia"><span class="dd-icon"></span> Sandálias</a>
+      <div class="dd-sep"></div>
+      <a href="produtos.html?categoria=calcados"><span class="dd-icon">✦</span> Ver tudo</a>
+    </div>
+  </div>
+
+  <!-- COLEÇÕES -->
+  <div class="nav-item">
+    <a href="colecoes">Coleções</a>
+    <div class="nav-dropdown">
+      <a href="colecoes.html?col=y2k"><span class="dd-icon"></span> Y2K</a>
+      <a href="colecoes.html?col=japao"><span class="dd-icon"></span> Japão core</a>
+      <a href="colecoes.html?col=fairy-grunge"><span class="dd-icon"></span> Fairy</a>
+      <a href="colecoes.html?col=harajuku"><span class="dd-icon"></span> Harajuku</a>
+      <div class="dd-sep"></div>
+      <a href="colecoes.html"><span class="dd-icon">✦</span> Ver todas</a>
+    </div>
+  </div>
+
+  <!-- OUTLET -->
+  <div class="nav-item">
+    <a href="produtos.html?categoria=outlet">Outlet</a>
+    <div class="nav-dropdown">
+      <a href="produtos.html?categoria=outlet&desc=30"><span class="dd-icon"></span> Até 30% OFF <span class="dd-tag green">%</span></a>
+      <a href="produtos.html?categoria=outlet&desc=50"><span class="dd-icon"></span> Até 50% OFF <span class="dd-tag green">%</span></a>
+      <a href="produtos.html?categoria=outlet&tipo=roupas"><span class="dd-icon"></span> Roupas em oferta</a>
+      <a href="produtos.html?categoria=outlet&tipo=acessorios"><span class="dd-icon"></span> Acessórios em oferta</a>
+      <div class="dd-sep"></div>
+      <a href="produtos.html?categoria=outlet"><span class="dd-icon">✦</span> Ver tudo</a>
+    </div>
+  </div>
+
+</nav>
+
+
     <div class="header-icons">
       <button aria-label="Buscar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
       <button aria-label="Minha conta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
       </button>
       <button class="cart-btn" aria-label="Carrinho">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 0 1-8 0"/>
         </svg>
-        <span class="cart-badge" id="cart-count">0</span>
+        <span class="cart-badge">0</span>
       </button>
     </div>
   </header>
