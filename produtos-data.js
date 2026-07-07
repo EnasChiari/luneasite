@@ -1472,7 +1472,7 @@ const PRODUTOS = [
       { nome: "Marrom", hex: "#8b7355" }
     ],
     imagens: [
-      "SUA_IMAGEM_PRODUTO_9.jpg",
+      "1 Peça Cinto de Cor Sólida Punk Street em Couro PU com Rebites Pesados, Gancho Curvo e Corrente de Strass, Estilo Y2K American Baddie Fashion Punk Retrô para Mulheres1.jpg",
       "SUA_IMAGEM_PRODUTO_9_2.jpg",
       "SUA_IMAGEM_PRODUTO_9_3.jpg",
       "SUA_IMAGEM_PRODUTO_9_4.jpg"
