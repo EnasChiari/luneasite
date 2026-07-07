@@ -1474,8 +1474,8 @@ const PRODUTOS = [
     imagens: [
       "1 Peça Cinto de Cor Sólida Punk Street em Couro PU com Rebites Pesados, Gancho Curvo e Corrente de Strass, Estilo Y2K American Baddie Fashion Punk Retrô para Mulheres1.jpg",
       "1 Peça Cinto de Cor Sólida Punk Street em Couro PU com Rebites Pesados, Gancho Curvo e Corrente de Strass, Estilo Y2K American Baddie Fashion Punk Retrô para Mulheres2.jpg",
-      "SUA_IMAGEM_PRODUTO_9_3.jpg",
-      "SUA_IMAGEM_PRODUTO_9_4.jpg"
+      "1 Peça Cinto de Cor Sólida Punk Street em Couro PU com Rebites Pesados, Gancho Curvo e Corrente de Strass, Estilo Y2K American Baddie Fashion Punk Retrô para Mulheres3.jpg",
+      "1 Peça Cinto de Cor Sólida Punk Street em Couro PU com Rebites Pesados, Gancho Curvo e Corrente de Strass, Estilo Y2K American Baddie Fashion Punk Retrô para Mulheres4.jpg"
     ],
     descricao: "Cinto punk com rebites, ideal para completar looks Y2K e streetwear.",
     detalhes: "Couro PU com fivela metálica resistente.",
