@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outlet | Lunéa Moda Alternativa</title>
+<style>
+  :root{
+    --bg: #0d0710;
+    --bg-alt: #150b1c;
+    --card: #1b0f24;
+    --pink: #ff6fc4;
+    --pink-soft: #f7a8e0;
+    --purple: #a97fd8;
+    --purple-soft: #c9aef0;
+    --text: #f2e9f5;
+    --text-dim: #b9a6c4;
+    --border: #3a2645;
+    --radius: 14px;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --script: 'Pacifico', 'Brush Script MT', cursive;
+    --sans: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; }
+  img{ max-width: 100%; display:block; }
+  button{ font-family: var(--sans); }
+
+  /* ---------- Placeholder de imagem ---------- */
+  .img-placeholder{
+    background: repeating-linear-gradient(45deg, #241430, #241430 10px, #2b1938 10px, #2b1938 20px);
+    border: 2px dashed var(--purple);
+    color: var(--purple-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size: 0.75rem;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    background: #050208;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 8px 32px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topbar span{ white-space:nowrap; }
+  .topbar .promo{ color: var(--pink-soft); font-weight:600; }
+
+  /* ---------- Header / nav ---------- */
+  header.main{
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top:0;
+    z-index: 50;
+  }
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 16px 32px;
+    gap: 24px;
+  }
+  .logo{
+    font-family: var(--script);
+    font-size: 1.9rem;
+    color: var(--pink);
+    display:flex;
+    flex-direction:column;
+    line-height:1;
+  }
+  .logo small{
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-top:4px;
+  }
+  nav.links{
+    display:flex;
+    gap: 28px;
+    font-size: 0.82rem;
+    font-weight:600;
+    letter-spacing: 0.04em;
+  }
+  nav.links a{ white-space:nowrap; opacity:0.85; transition:opacity .2s, color .2s; }
+  nav.links a:hover{ opacity:1; color: var(--pink); }
+  nav.links a.active{ color: var(--pink); opacity:1; }
+
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+  }
+  .search-box{
+    display:flex;
+    align-items:center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 14px;
+    min-width: 220px;
+  }
+  .search-box input{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    flex:1;
+  }
+  .icon-btn{
+    position: relative;
+    font-size: 1.2rem;
+    cursor:pointer;
+  }
+  .badge{
+    position:absolute;
+    top:-6px; right:-10px;
+    background: var(--pink);
+    color:#1a0a1a;
+    font-size: 0.6rem;
+    font-weight:700;
+    padding: 1px 5px;
+    border-radius: 10px;
+  }
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+  }
+  .burger span{ width:24px; height:2px; background:var(--text); display:block; }
+
+  /* ---------- Breadcrumb ---------- */
+  .breadcrumb{
+    padding: 18px 32px 0;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  .breadcrumb .current{ color: var(--pink-soft); }
+
+  .container{ max-width: 1500px; margin:0 auto; padding: 0 32px; }
+
+  /* ---------- Hero Outlet ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items:center;
+    padding: 34px 32px 30px;
+  }
+  .hero-text .outlet-title{
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 3.6rem;
+    color: var(--pink);
+    -webkit-text-stroke: 1px var(--pink-soft);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+  }
+  .hero-text .outlet-sub{
+    display:inline-block;
+    background: var(--pink);
+    color:#1a0a1a;
+    font-weight:800;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    padding: 6px 14px;
+    margin-top: 10px;
+    border-radius: 4px;
+    transform: rotate(-1deg);
+  }
+  .hero-text p{
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 18px;
+    max-width: 420px;
+  }
+
+  .hero-banner{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    align-items:center;
+  }
+  .discount-tag{
+    background: var(--pink);
+    color: #1a0a1a;
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align:center;
+    font-weight: 800;
+    transform: rotate(-3deg);
+    box-shadow: 0 10px 24px rgba(255,111,196,0.35);
+  }
+  .discount-tag .label{ font-size: 0.72rem; letter-spacing:0.05em; }
+  .discount-tag .num{ font-family: var(--serif); font-size: 2.1rem; line-height:1; margin: 4px 0; }
+  .discount-tag .off{ font-size: 0.85rem; }
+
+  .hero-banner .img-placeholder{
+    height: 220px;
+    border-radius: 10px;
+  }
+  .hero-banner .p1{ transform: rotate(2deg); }
+  .hero-banner .p2{ transform: rotate(-2deg); }
+  .hero-banner .p3{ transform: rotate(1deg); }
+
+  /* ---------- Layout principal (sidebar + produtos) ---------- */
+  .main-layout{
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    padding: 20px 32px 50px;
+    align-items:start;
+  }
+
+  /* ---------- Sidebar filtros ---------- */
+  .filters{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    position: sticky;
+    top: 90px;
+  }
+  .filters h3{
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  .filter-group{
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  .filter-group:last-of-type{ border-bottom:none; }
+  .filter-group h4{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .filter-options label{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    cursor:pointer;
+  }
+  .filter-options input[type="checkbox"]{
+    accent-color: var(--pink);
+    width: 15px; height: 15px;
+  }
+
+  .size-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .size-grid button{
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    cursor:pointer;
+    transition: all .15s;
+  }
+  .size-grid button:hover, .size-grid button.selected{
+    border-color: var(--pink);
+    color: var(--pink);
+  }
+
+  .price-range{
+    padding: 6px 4px;
+  }
+  .price-range input[type="range"]{
+    width: 100%;
+    accent-color: var(--pink);
+  }
+  .price-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .clear-btn{
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--purple);
+    color: var(--purple-soft);
+    padding: 12px;
+    border-radius: 24px;
+    font-size: 0.82rem;
+    font-weight:600;
+    cursor:pointer;
+    transition: background .15s;
+  }
+  .clear-btn:hover{ background: var(--purple); color: #1a0a1a; }
+
+  /* ---------- Toolbar de produtos ---------- */
+  .products-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .products-toolbar .count{ font-size: 0.85rem; color: var(--text-dim); }
+  .toolbar-right{ display:flex; align-items:center; gap: 12px; }
+  .sort-select{
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    outline:none;
+  }
+  .view-toggle{ display:flex; gap: 6px; }
+  .view-toggle button{
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    cursor:pointer;
+    font-size: 1rem;
+  }
+  .view-toggle button.active{ border-color: var(--pink); color: var(--pink); }
+
+  .filter-mobile-btn{
+    display:none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    cursor:pointer;
+  }
+
+  /* ---------- Grid de produtos ---------- */
+  .products-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .product-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition: transform .2s, border-color .2s;
+  }
+  .product-card:hover{ transform: translateY(-4px); border-color: var(--pink); }
+
+  .product-media{
+    position:relative;
+    aspect-ratio: 4/5;
+  }
+  .product-media .img-placeholder{ height:100%; border-radius:0; border:none; }
+  .discount-badge{
+    position:absolute;
+    top:12px; left:12px;
+    background: var(--pink);
+    color:#1a0a1a;
+    font-size: 0.72rem;
+    font-weight:800;
+    padding: 4px 9px;
+    border-radius: 20px;
+    z-index:2;
+  }
+  .fav-btn{
+    position:absolute;
+    top:12px; right:12px;
+    background: rgba(13,7,16,0.6);
+    border: none;
+    color: var(--text);
+    width: 32px; height:32px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size: 0.95rem;
+    z-index:2;
+  }
+  .fav-btn.active{ color: var(--pink); }
+
+  .product-info{ padding: 14px 16px 16px; display:flex; flex-direction:column; gap:6px; }
+  .product-info .cat{ font-size: 0.72rem; color: var(--text-dim); text-transform:uppercase; letter-spacing: 0.04em; }
+  .product-info .name{ font-size: 0.95rem; font-weight:600; }
+  .price-row{ display:flex; align-items:baseline; gap: 8px; }
+  .price-old{ font-size: 0.78rem; color: var(--text-dim); text-decoration: line-through; }
+  .price-new{ font-size: 1.05rem; color: var(--pink); font-weight: 700; }
+  .size-options{ display:flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .size-options span{
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
+
+  .load-more-wrap{ text-align:center; margin-top: 34px; }
+  .load-more-btn{
+    background: var(--card);
+    border: 1px solid var(--purple);
+    color: var(--purple-soft);
+    padding: 13px 30px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight:700;
+    letter-spacing: 0.03em;
+    cursor:pointer;
+    transition: background .15s;
+  }
+  .load-more-btn:hover{ background: var(--purple); color:#1a0a1a; }
+
+  /* ---------- Features bar ---------- */
+  .features{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 30px 32px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+  }
+  .feature{ display:flex; gap: 14px; align-items:flex-start; }
+  .feature .ficon{ font-size: 1.5rem; color: var(--pink); flex-shrink:0; }
+  .feature h4{ font-size: 0.88rem; margin-bottom: 4px; }
+  .feature p{ font-size: 0.78rem; color: var(--text-dim); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: #05020a;
+    padding: 50px 32px 24px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.3fr;
+    gap: 30px;
+  }
+  .footer-about .logo{ margin-bottom: 12px; }
+  .footer-about p{
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+  }
+  .socials{ display:flex; gap: 14px; font-size: 1.1rem; }
+  .footer-col h5{
+    color: var(--pink);
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .footer-col a{
+    display:block;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover{ color: var(--pink-soft); }
+
+  .newsletter{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .newsletter h5{ color: var(--pink); margin-bottom: 10px; }
+  .newsletter p{ color: var(--text-dim); font-size: 0.8rem; margin-bottom: 14px; }
+  .newsletter form{ display:flex; gap: 8px; }
+  .newsletter input{
+    flex:1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-size: 0.8rem;
+    outline:none;
+  }
+  .newsletter button{
+    background: var(--pink);
+    border:none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #1a0a1a;
+    font-size: 1rem;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .newsletter .fine{
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--purple-soft);
+    font-style: italic;
+  }
+
+  .copyright{
+    text-align:center;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin-top: 34px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 1150px){
+    .products-grid{ grid-template-columns: repeat(2, 1fr); }
+    .hero-banner{ grid-template-columns: repeat(2, 1fr); }
+    .discount-tag{ grid-column: span 1; }
+  }
+
+  @media (max-width: 1024px){
+    .hero{ grid-template-columns: 1fr; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+    .features{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px){
+    .main-layout{ grid-template-columns: 1fr; }
+    .filters{
+      position: fixed;
+      top:0; left:-100%;
+      width: 82%;
+      max-width: 320px;
+      height: 100vh;
+      overflow-y:auto;
+      z-index: 200;
+      transition: left .25s ease;
+      border-radius:0;
+    }
+    .filters.open{ left:0; }
+    .filter-mobile-btn{ display:inline-flex; align-items:center; gap:8px; }
+    .filters-overlay{
+      display:none;
+      position:fixed; inset:0;
+      background: rgba(0,0,0,0.6);
+      z-index: 190;
+    }
+    .filters-overlay.open{ display:block; }
+    .filters-close{
+      display:block;
+      background:none;
+      border:none;
+      color: var(--pink);
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+      cursor:pointer;
+    }
+  }
+
+  @media (max-width: 720px){
+    .topbar{ justify-content:center; text-align:center; }
+    nav.links{ display:none; }
+    .burger{ display:flex; }
+    .search-box{ display:none; }
+    .nav-wrap{ padding: 14px 18px; }
+    .hero{ padding: 22px 18px 24px; }
+    .hero-text .outlet-title{ font-size: 2.4rem; }
+    .hero-banner{ grid-template-columns: 1fr 1fr; }
+    .main-layout{ padding: 16px 18px 40px; }
+    .products-grid{ grid-template-columns: 1fr 1fr; gap: 14px; }
+    .features{ grid-template-columns: 1fr; padding: 24px 18px; }
+    .footer-grid{ grid-template-columns: 1fr; padding: 0; }
+    footer{ padding: 34px 18px 20px; }
+    .container{ padding: 0 18px; }
+    .breadcrumb{ padding: 14px 18px 0; }
+
+    nav.links.open{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top: 100%;
+      left:0;
+      right:0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 18px;
+      gap: 16px;
+      z-index: 60;
+    }
+  }
+
+  @media (max-width: 480px){
+    .products-grid{ grid-template-columns: 1fr; }
+    .hero-banner{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= TOPBAR ================= -->
+  <div class="topbar">
+    <span>+ FRETE GRÁTIS ACIMA DE R$199</span>
+    <span class="promo">10% OFF NA PRIMEIRA COMPRA | CUPOM: LUNEA10</span>
+    <span>ENTREGA PARA TODO O BRASIL ♡</span>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="main">
+    <div class="nav-wrap">
+      <div class="logo">lunéa <small>+ moda alternativa</small></div>
+
+      <nav class="links" id="navLinks">
+        <a href="#">NOVIDADES</a>
+        <a href="#">ROUPAS</a>
+        <a href="#">ACESSÓRIOS</a>
+        <a href="#">CALÇADOS</a>
+        <a href="#">COLEÇÕES</a>
+        <a href="#" class="active">OUTLET</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <span>🔍</span>
+        </div>
+        <span class="icon-btn">👤</span>
+        <span class="icon-btn">🛍️<span class="badge">3</span></span>
+        <div class="burger" id="burgerBtn">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    Início &nbsp;›&nbsp; <span class="current">Outlet</span>
+  </div>
+
+  <!-- ================= HERO OUTLET ================= -->
+  <section class="container hero">
+    <div class="hero-text">
+      <div class="outlet-title">OUTLET</div>
+      <div class="outlet-sub">SEU ESTILO, POR MENOS.</div>
+      <p>
+        Peças selecionadas com descontos imperdíveis. Estoque limitado —
+        quem ama, garante!
+      </p>
+    </div>
+
+    <div class="hero-banner">
+      <div class="discount-tag">
+        <div class="label">DESCONTOS DE ATÉ</div>
+        <div class="num">70%</div>
+        <div class="off">OFF</div>
+      </div>
+      <div class="img-placeholder p1">IMAGEM<br>(botas)</div>
+      <div class="img-placeholder p2">IMAGEM<br>(camiseta Chaos)</div>
+      <div class="img-placeholder p3">IMAGEM<br>(bolsa)</div>
+    </div>
+  </section>
+
+  <!-- Overlay para filtros no mobile -->
+  <div class="filters-overlay" id="filtersOverlay"></div>
+
+  <!-- ================= LAYOUT PRINCIPAL ================= -->
+  <div class="container main-layout">
+
+    <!-- ---------- SIDEBAR FILTROS ---------- -->
+    <aside class="filters" id="filtersPanel">
+      <button class="filters-close" id="filtersClose">✕</button>
+      <h3>FILTRAR ✦</h3>
+
+      <div class="filter-group">
+        <h4>CATEGORIA <span>−</span></h4>
+        <div class="filter-options">
+          <label><input type="checkbox"> Roupas</label>
+          <label><input type="checkbox"> Acessórios</label>
+          <label><input type="checkbox"> Calçados</label>
+          <label><input type="checkbox"> Bolsas</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>ESTILO <span>−</span></h4>
+        <div class="filter-options">
+          <label><input type="checkbox"> Y2K</label>
+          <label><input type="checkbox"> Grunge</label>
+          <label><input type="checkbox"> Gótico</label>
+          <label><input type="checkbox"> Kawaii</label>
+          <label><input type="checkbox"> Street</label>
+          <label><input type="checkbox"> Fairycore</label>
+          <label><input type="checkbox"> Mais estilos +</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>TAMANHO <span>−</span></h4>
+        <div class="size-grid">
+          <button>PP</button>
+          <button>P</button>
+          <button>M</button>
+          <button>G</button>
+          <button>GG</button>
+          <button>XG</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>FAIXA DE PREÇO <span>−</span></h4>
+        <div class="price-range">
+          <input type="range" min="0" max="500" value="500" id="priceRange">
+          <div class="price-labels">
+            <span>R$ 0</span>
+            <span id="priceMax">R$ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="clear-btn" id="clearFilters">LIMPAR FILTROS ✦</button>
+    </aside>
+
+    <!-- ---------- PRODUTOS ---------- -->
+    <div class="products-area">
+
+      <div class="products-toolbar">
+        <span class="count">Mostrando 1–24 de 102 produtos</span>
+        <div class="toolbar-right">
+          <button class="filter-mobile-btn" id="filterMobileBtn">☰ Filtrar</button>
+          <select class="sort-select">
+            <option>Ordenar por: Maior desconto</option>
+            <option>Menor preço</option>
+            <option>Maior preço</option>
+            <option>Mais vendidos</option>
+            <option>Novidades</option>
+          </select>
+          <div class="view-toggle">
+            <button class="active" id="gridViewBtn">▦</button>
+            <button id="listViewBtn">☰</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+
+        <!-- Produto 1 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-60%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Cropped Dark Angel</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Cropped</span>
+            <span class="name">Dark Angel</span>
+            <div class="price-row">
+              <span class="price-old">R$ 129,90</span>
+              <span class="price-new">R$ 51,96</span>
+            </div>
+            <div class="size-options"><span>PP</span><span>P</span><span>M</span><span>G</span></div>
+          </div>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-50%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Saia Xadrez Chains</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Saias</span>
+            <span class="name">Saia Xadrez Chains</span>
+            <div class="price-row">
+              <span class="price-old">R$ 139,90</span>
+              <span class="price-new">R$ 69,95</span>
+            </div>
+            <div class="size-options"><span>PP</span><span>P</span><span>M</span><span>G</span></div>
+          </div>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-70%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Bota Platform Heart</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Calçados</span>
+            <span class="name">Bota Platform Heart</span>
+            <div class="price-row">
+              <span class="price-old">R$ 299,90</span>
+              <span class="price-new">R$ 89,97</span>
+            </div>
+            <div class="size-options"><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span></div>
+          </div>
+        </div>
+
+        <!-- Produto 4 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-45%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Tee Anime Dark</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Camisetas</span>
+            <span class="name">Tee Anime Dark</span>
+            <div class="price-row">
+              <span class="price-old">R$ 99,90</span>
+              <span class="price-new">R$ 54,95</span>
+            </div>
+            <div class="size-options"><span>P</span><span>M</span><span>G</span><span>GG</span></div>
+          </div>
+        </div>
+
+        <!-- Produto 5 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-55%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Cinto Star Chain</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Acessórios</span>
+            <span class="name">Cinto Star Chain</span>
+            <div class="price-row">
+              <span class="price-old">R$ 89,90</span>
+              <span class="price-new">R$ 40,46</span>
+            </div>
+            <div class="size-options"><span>ÚNICO</span></div>
+          </div>
+        </div>
+
+        <!-- Produto 6 -->
+        <div class="product-card">
+          <div class="product-media">
+            <span class="discount-badge">-60%</span>
+            <button class="fav-btn">♡</button>
+            <div class="img-placeholder">IMAGEM<br>Luvas Listradas</div>
+          </div>
+          <div class="product-info">
+            <span class="cat">Acessórios</span>
+            <span class="name">Luvas Listradas</span>
+            <div class="price-row">
+              <span class="price-old">R$ 49,90</span>
+              <span class="price-new">R$ 19,96</span>
+            </div>
+            <div class="size-options"><span>ÚNICO</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="load-more-wrap">
+        <button class="load-more-btn" id="loadMoreBtn">CARREGAR MAIS PRODUTOS ✦</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FEATURES ================= -->
+  <div class="features">
+    <div class="feature">
+      <span class="ficon">🏷️</span>
+      <div>
+        <h4>Descontos reais</h4>
+        <p>Peças originais com preços especiais</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="ficon">🕒</span>
+      <div>
+        <h4>Estoque limitado</h4>
+        <p>Quando acabar, acabou!</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="ficon">📦</span>
+      <div>
+        <h4>Troca fácil</h4>
+        <p>Até 7 dias para trocas e devoluções</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="ficon">♡</span>
+      <div>
+        <h4>Compre com segurança</h4>
+        <p>Seus dados protegidos com criptografia</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <div class="logo">lunéa</div>
+        <p>Mais que moda, um estilo de vida. Expressão, liberdade e autenticidade em cada detalhe.</p>
+        <div class="socials">
+          <span>📷</span><span>🎵</span><span>📌</span><span>𝕏</span><span>▶️</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>COMPRE</h5>
+        <a href="#">Novidades</a>
+        <a href="#">Roupas</a>
+        <a href="#">Acessórios</a>
+        <a href="#">Calçados</a>
+        <a href="#">Coleções</a>
+        <a href="#">Outlet</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>AJUDA</h5>
+        <a href="#">Central de Ajuda</a>
+        <a href="#">Trocas e Devoluções</a>
+        <a href="#">Rastreamento</a>
+        <a href="#">Formas de Pagamento</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>SOBRE NÓS</h5>
+        <a href="#">Nossa História</a>
+        <a href="#">Guia de Estilo</a>
+        <a href="#">Seja Afiliado</a>
+        <a href="#">Trabalhe Conosco</a>
+        <a href="#">Contato</a>
+      </div>
+
+      <div class="newsletter">
+        <h5>RECEBA NOVIDADES E OFERTAS ✦</h5>
+        <p>Cadastre seu e-mail e ganhe 10% OFF na sua primeira compra!</p>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="seu melhor e-mail" required>
+          <button type="submit">→</button>
+        </form>
+        <p class="fine">☾ você é única. seu estilo também.</p>
+      </div>
+    </div>
+
+    <p class="copyright">© 2024 Lunéa Moda Alternativa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Menu mobile (hambúrguer) do header
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    burgerBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Favoritar produto
+    document.querySelectorAll('.fav-btn').forEach(btn => {
+      btn.addEventListener('click', () => btn.classList.toggle('active'));
+    });
+
+    // Seleção de tamanho na sidebar
+    document.querySelectorAll('.size-grid button').forEach(btn => {
+      btn.addEventListener('click', () => btn.classList.toggle('selected'));
+    });
+
+    // Slider de preço
+    const priceRange = document.getElementById('priceRange');
+    const priceMax = document.getElementById('priceMax');
+    priceRange.addEventListener('input', () => {
+      priceMax.textContent = 'R$ ' + priceRange.value;
+    });
+
+    // Limpar filtros
+    document.getElementById('clearFilters').addEventListener('click', () => {
+      document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.size-grid button').forEach(b => b.classList.remove('selected'));
+      priceRange.value = 500;
+      priceMax.textContent = 'R$ 500';
+    });
+
+    // Alternar visualização grade/lista
+    const productsGrid = document.getElementById('productsGrid');
+    document.getElementById('gridViewBtn').addEventListener('click', function(){
+      productsGrid.style.gridTemplateColumns = '';
+      this.classList.add('active');
+      document.getElementById('listViewBtn').classList.remove('active');
+    });
+    document.getElementById('listViewBtn').addEventListener('click', function(){
+      productsGrid.style.gridTemplateColumns = '1fr';
+      this.classList.add('active');
+      document.getElementById('gridViewBtn').classList.remove('active');
+    });
+
+    // Carregar mais produtos (simulação)
+    document.getElementById('loadMoreBtn').addEventListener('click', function(){
+      this.textContent = 'CARREGANDO...';
+      setTimeout(() => { this.textContent = 'CARREGAR MAIS PRODUTOS ✦'; }, 900);
+    });
+
+    // Filtros no mobile (abrir/fechar painel lateral)
+    const filtersPanel = document.getElementById('filtersPanel');
+    const filtersOverlay = document.getElementById('filtersOverlay');
+    const filterMobileBtn = document.getElementById('filterMobileBtn');
+    const filtersClose = document.getElementById('filtersClose');
+
+    function openFilters(){
+      filtersPanel.classList.add('open');
+      filtersOverlay.classList.add('open');
+    }
+    function closeFilters(){
+      filtersPanel.classList.remove('open');
+      filtersOverlay.classList.remove('open');
+    }
+    filterMobileBtn.addEventListener('click', openFilters);
+    filtersClose.addEventListener('click', closeFilters);
+    filtersOverlay.addEventListener('click', closeFilters);
+  </script>
+
+</body>
+</html>
