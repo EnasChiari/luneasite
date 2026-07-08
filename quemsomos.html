@@ -1,11 +1,748 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre a Lunéa | Moda Alternativa</title>
+<style>
+  :root{
+    --bg: #0d0710;
+    --bg-alt: #150b1c;
+    --card: #1b0f24;
+    --pink: #ff6fc4;
+    --pink-soft: #f7a8e0;
+    --purple: #a97fd8;
+    --purple-soft: #c9aef0;
+    --text: #f2e9f5;
+    --text-dim: #b9a6c4;
+    --border: #3a2645;
+    --radius: 14px;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --script: 'Pacifico', 'Brush Script MT', cursive;
+    --sans: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; }
+  img{ max-width: 100%; display:block; }
+
+  /* ---------- Placeholder de imagem ---------- */
+  .img-placeholder{
+    background: repeating-linear-gradient(45deg, #241430, #241430 10px, #2b1938 10px, #2b1938 20px);
+    border: 2px dashed var(--purple);
+    color: var(--purple-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size: 0.8rem;
+    padding: 10px;
+    border-radius: var(--radius);
+    min-height: 120px;
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    background: #050208;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 8px 32px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topbar span{ white-space:nowrap; }
+  .topbar .promo{ color: var(--pink-soft); font-weight:600; }
+
+  /* ---------- Header / nav ---------- */
+  header.main{
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top:0;
+    z-index: 50;
+  }
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 16px 32px;
+    gap: 24px;
+  }
+  .logo{
+    font-family: var(--script);
+    font-size: 1.9rem;
+    color: var(--pink);
+    display:flex;
+    flex-direction:column;
+    line-height:1;
+  }
+  .logo small{
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-top:4px;
+  }
+  nav.links{
+    display:flex;
+    gap: 28px;
+    font-size: 0.82rem;
+    font-weight:600;
+    letter-spacing: 0.04em;
+  }
+  nav.links a{ white-space:nowrap; opacity:0.85; transition:opacity .2s, color .2s; }
+  nav.links a:hover{ opacity:1; color: var(--pink); }
+
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+  }
+  .search-box{
+    display:flex;
+    align-items:center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 14px;
+    min-width: 220px;
+  }
+  .search-box input{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    flex:1;
+  }
+  .icon-btn{
+    position: relative;
+    font-size: 1.2rem;
+    cursor:pointer;
+  }
+  .badge{
+    position:absolute;
+    top:-6px; right:-10px;
+    background: var(--pink);
+    color:#1a0a1a;
+    font-size: 0.6rem;
+    font-weight:700;
+    padding: 1px 5px;
+    border-radius: 10px;
+  }
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+  }
+  .burger span{ width:24px; height:2px; background:var(--text); display:block; }
+
+  /* ---------- Breadcrumb ---------- */
+  .breadcrumb{
+    padding: 18px 32px 0;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  .breadcrumb .current{ color: var(--pink-soft); }
+
+  .container{ max-width: 1400px; margin:0 auto; padding: 0 32px; }
+
+  /* ---------- Hero "Sobre a Lunéa" ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+    padding: 40px 32px 60px;
+    position: relative;
+  }
+  .hero-text h1{
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+  .hero-text h1 span{ color: var(--text); }
+  .hero-sub{
+    color: var(--pink-soft);
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+  .hero-text p{
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    max-width: 480px;
+    margin-bottom: 22px;
+  }
+  .hero-tagline{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--purple-soft);
+    border-bottom: 2px solid var(--pink);
+    display:inline-block;
+    padding-bottom: 6px;
+  }
+
+  .hero-collage{
+    position: relative;
+    min-height: 420px;
+  }
+  .collage-item{
+    position:absolute;
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    overflow:hidden;
+  }
+  .collage-item.main{
+    width: 62%;
+    height: 380px;
+    left: 0;
+    top: 10px;
+    transform: rotate(-2deg);
+    z-index:2;
+  }
+  .collage-item.two{
+    width: 42%;
+    height: 190px;
+    right: 0;
+    top: 0;
+    transform: rotate(3deg);
+    z-index:3;
+  }
+  .collage-item.three{
+    width: 42%;
+    height: 190px;
+    right: 4%;
+    top: 200px;
+    transform: rotate(-1deg);
+    z-index:3;
+  }
+
+  /* ---------- Nossos valores ---------- */
+  .values-title{
+    text-align:center;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--pink);
+    margin: 30px 0 26px;
+  }
+  .values-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    padding: 0 32px 50px;
+  }
+  .value-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    display:flex;
+    gap: 14px;
+    align-items:flex-start;
+  }
+  .value-card .vicon{
+    font-size: 1.6rem;
+    color: var(--pink);
+    flex-shrink:0;
+  }
+  .value-card h3{
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .value-card p{
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- Conheça a criadora ---------- */
+  .creator-section{
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 50px 32px;
+  }
+  .creator-grid{
+    display:grid;
+    grid-template-columns: 0.9fr 1.4fr 1.1fr;
+    gap: 36px;
+  }
+  .creator-photo{ min-height: 380px; }
+  .creator-text h2{
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+  .creator-text .subtitle{
+    color: var(--pink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+  .creator-text p{
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+
+  .quote-block{
+    padding: 16px 0;
+  }
+  .quote-block q{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--purple-soft);
+    display:block;
+    margin-bottom: 24px;
+    quotes: none;
+  }
+  .info-list h4{
+    color: var(--pink);
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  .info-list .item{
+    display:flex;
+    gap:10px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    align-items:flex-start;
+  }
+  .info-list .item .ico{ color: var(--pink); flex-shrink:0; }
+
+  .mission-box{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 10px;
+  }
+  .mission-box h4{
+    color: var(--pink);
+    font-family: var(--serif);
+    margin-bottom: 8px;
+  }
+  .mission-box p{
+    font-size: 0.83rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- Estatísticas ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 36px 32px;
+    text-align:center;
+  }
+  .stat{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 8px;
+  }
+  .stat .sicon{ font-size: 1.6rem; color: var(--pink); }
+  .stat .snum{
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+  .stat .slabel{
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: #05020a;
+    border-top: 1px solid var(--border);
+    padding: 50px 32px 24px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.3fr;
+    gap: 30px;
+  }
+  .footer-about .logo{ margin-bottom: 12px; }
+  .footer-about p{
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+  }
+  .socials{ display:flex; gap: 14px; font-size: 1.1rem; }
+  .footer-col h5{
+    color: var(--pink);
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .footer-col a{
+    display:block;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover{ color: var(--pink-soft); }
+
+  .newsletter{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .newsletter h5{ color: var(--pink); margin-bottom: 10px; }
+  .newsletter p{ color: var(--text-dim); font-size: 0.8rem; margin-bottom: 14px; }
+  .newsletter form{ display:flex; gap: 8px; }
+  .newsletter input{
+    flex:1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-size: 0.8rem;
+    outline:none;
+  }
+  .newsletter button{
+    background: var(--pink);
+    border:none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #1a0a1a;
+    font-size: 1rem;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .newsletter .fine{
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--purple-soft);
+    font-style: italic;
+  }
+
+  .copyright{
+    text-align:center;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin-top: 34px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 1024px){
+    .hero{ grid-template-columns: 1fr; }
+    .hero-collage{ min-height: 340px; order:-1; }
+    .values-grid{ grid-template-columns: repeat(3, 1fr); }
+    .creator-grid{ grid-template-columns: 1fr; }
+    .creator-photo{ min-height: 260px; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+    .stats{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px){
+    .topbar{ justify-content:center; text-align:center; }
+    nav.links{ display:none; }
+    .burger{ display:flex; }
+    .search-box{ display:none; }
+    .nav-wrap{ padding: 14px 18px; }
+    .hero{ padding: 24px 18px 40px; }
+    .hero-text h1{ font-size: 2.2rem; }
+    .values-grid{ grid-template-columns: 1fr; padding: 0 18px 40px; }
+    .creator-section{ padding: 36px 18px; }
+    .stats{ grid-template-columns: 1fr 1fr; padding: 28px 18px; }
+    .footer-grid{ grid-template-columns: 1fr; padding: 0; }
+    footer{ padding: 36px 18px 20px; }
+    .container{ padding: 0 18px; }
+    .breadcrumb{ padding: 14px 18px 0; }
+
+    /* menu mobile suspenso */
+    nav.links.open{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top: 100%;
+      left:0;
+      right:0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 18px;
+      gap: 16px;
+      z-index: 60;
+    }
+  }
+
+  @media (max-width: 480px){
+    .collage-item.main{ width: 100%; height: 220px; position:relative; transform:none; }
+    .collage-item.two, .collage-item.three{ display:none; }
+    .hero-collage{ min-height: auto; }
+  }
+</style>
 </head>
 <body>
-    
+
+  <!-- ================= TOPBAR ================= -->
+  <div class="topbar">
+    <span>+ FRETE GRÁTIS ACIMA DE R$199</span>
+    <span class="promo">10% OFF NA PRIMEIRA COMPRA | CUPOM: LUNEA10</span>
+    <span>ENTREGA PARA TODO O BRASIL ♡</span>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="main">
+    <div class="nav-wrap">
+      <div class="logo">lunéa <small>+ moda alternativa</small></div>
+
+      <nav class="links" id="navLinks">
+        <a href="#">NOVIDADES</a>
+        <a href="#">ROUPAS</a>
+        <a href="#">ACESSÓRIOS</a>
+        <a href="#">CALÇADOS</a>
+        <a href="#">COLEÇÕES</a>
+        <a href="#">OUTLET</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <span>🔍</span>
+        </div>
+        <span class="icon-btn">👤</span>
+        <span class="icon-btn">🛍️<span class="badge">3</span></span>
+        <div class="burger" id="burgerBtn">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    Início &nbsp;›&nbsp; <span class="current">Sobre a Lunéa</span>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="container hero">
+    <div class="hero-text">
+      <h1>Sobre a <span>Lunéa</span></h1>
+      <p class="hero-sub">Mais que moda, um estilo de ser.</p>
+      <p>
+        A Lunéa nasceu do desejo de criar um espaço onde cada pessoa pudesse se
+        expressar livremente através do que veste. Acreditamos que a moda
+        alternativa vai além das tendências — é identidade, é atitude, é liberdade.
+      </p>
+      <span class="hero-tagline">seu estilo, suas regras.</span>
+    </div>
+
+    <div class="hero-collage">
+      <div class="collage-item main img-placeholder">IMAGEM PRINCIPAL<br>(duas modelos)</div>
+      <div class="collage-item two img-placeholder">IMAGEM<br>(botas / calçado)</div>
+      <div class="collage-item three img-placeholder">IMAGEM<br>(arara de roupas)</div>
+    </div>
+  </section>
+
+  <!-- ================= VALORES ================= -->
+  <h2 class="values-title">✦ Nossos valores ✦</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="vicon">♡</span>
+      <div>
+        <h3>Expressão verdadeira</h3>
+        <p>Incentivamos você a ser quem realmente é, sem medo e sem padrões.</p>
+      </div>
+    </div>
+    <div class="value-card">
+      <span class="vicon">★</span>
+      <div>
+        <h3>Inclusão e respeito</h3>
+        <p>Todas as identidades, corpos e estilos são bem-vindos aqui.</p>
+      </div>
+    </div>
+    <div class="value-card">
+      <span class="vicon">☾</span>
+      <div>
+        <h3>Criatividade sem limites</h3>
+        <p>Apoiamos a arte, a música e todas as formas de expressão alternativa.</p>
+      </div>
+    </div>
+    <div class="value-card">
+      <span class="vicon">⚡</span>
+      <div>
+        <h3>Atitude e autenticidade</h3>
+        <p>Mais que seguir modas, queremos que você crie a sua própria história.</p>
+      </div>
+    </div>
+    <div class="value-card">
+      <span class="vicon">🪐</span>
+      <div>
+        <h3>Consciência</h3>
+        <p>Buscamos sempre opções mais conscientes e sustentáveis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CRIADORA ================= -->
+  <section class="creator-section">
+    <div class="container creator-grid">
+
+      <div class="creator-photo img-placeholder">IMAGEM<br>(criadora desenhando)</div>
+
+      <div class="creator-text">
+        <h2>Conheça a criadora ♡</h2>
+        <p class="subtitle">Uma ideia que nasceu da paixão pela moda alternativa.</p>
+        <p>
+          A Lunéa foi idealizada por uma estudante do COTEMIG, apaixonada pela
+          história da moda, pelas subculturas e pelas diferentes formas de
+          expressão através das roupas.
+        </p>
+        <p>
+          Durante seus estudos, percebeu que muitas pessoas interessadas em
+          estilos alternativos encontravam dificuldades para descobrir
+          informações confiáveis, comprar peças de qualidade e encontrar uma
+          loja que reunisse diferentes estéticas em um único lugar.
+        </p>
+        <p>
+          Foi dessa vontade de tornar a moda alternativa mais acessível,
+          organizada e acolhedora que nasceu a Lunéa.
+        </p>
+      </div>
+
+      <div class="quote-side">
+        <div class="quote-block">
+          <q>“A moda não é apenas tendência. É uma forma de contar quem somos sem precisar dizer uma palavra.”</q>
+
+          <div class="info-list">
+            <h4>Sobre a criadora</h4>
+            <div class="item"><span class="ico">🎓</span> Estudante de: COTEMIG</div>
+            <div class="item"><span class="ico">💻</span> Curso: Técnico em Informática</div>
+            <div class="item"><span class="ico">✦</span> Áreas de interesse: História da Moda · Moda Alternativa · Design · Desenvolvimento Web · UI/UX</div>
+          </div>
+        </div>
+
+        <div class="mission-box">
+          <h4>Missão da Lunéa ♡</h4>
+          <p>
+            Tornar a moda alternativa mais acessível para todos, conectando
+            pessoas, estilos e culturas em uma plataforma moderna,
+            inspiradora e inclusiva.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ESTATÍSTICAS ================= -->
+  <div class="container stats">
+    <div class="stat">
+      <span class="sicon">👥</span>
+      <span class="snum">+25 mil</span>
+      <span class="slabel">clientes felizes</span>
+    </div>
+    <div class="stat">
+      <span class="sicon">🛍️</span>
+      <span class="snum">+50 mil</span>
+      <span class="slabel">pedidos enviados</span>
+    </div>
+    <div class="stat">
+      <span class="sicon">★</span>
+      <span class="snum">4,9/5</span>
+      <span class="slabel">avaliação média</span>
+    </div>
+    <div class="stat">
+      <span class="sicon">🌐</span>
+      <span class="snum">todo o brasil</span>
+      <span class="slabel">entregamos para você</span>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <div class="logo">lunéa</div>
+        <p>Moda alternativa é sobre expressão, não padrão. Vista seu estilo, sua essência, sua verdade.</p>
+        <div class="socials">
+          <span>📷</span><span>🎵</span><span>📌</span><span>𝕏</span><span>▶️</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>COMPRE</h5>
+        <a href="#">Novidades</a>
+        <a href="#">Roupas</a>
+        <a href="#">Acessórios</a>
+        <a href="#">Calçados</a>
+        <a href="#">Coleções</a>
+        <a href="#">Outlet</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>AJUDA</h5>
+        <a href="#">Central de Ajuda</a>
+        <a href="#">Trocas e Devoluções</a>
+        <a href="#">Rastreamento</a>
+        <a href="#">Formas de Pagamento</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>SOBRE NÓS</h5>
+        <a href="#">Nossa História</a>
+        <a href="#">Guia de Estilo</a>
+        <a href="#">Blog Lunéa</a>
+        <a href="#">Trabalhe Conosco</a>
+        <a href="#">Contato</a>
+      </div>
+
+      <div class="newsletter">
+        <h5>RECEBA NOVIDADES E OFERTAS ✦</h5>
+        <p>Cadastre seu e-mail e ganhe 10% OFF na sua primeira compra!</p>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="seu melhor e-mail" required>
+          <button type="submit">→</button>
+        </form>
+        <p class="fine">☾ você é única. seu estilo também.</p>
+      </div>
+    </div>
+
+    <p class="copyright">© 2024 Lunéa Moda Alternativa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Menu mobile (hambúrguer)
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    burgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Fecha o menu ao clicar em um link (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
 </body>
 </html>
