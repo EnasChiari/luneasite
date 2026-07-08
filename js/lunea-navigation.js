@@ -13,7 +13,7 @@ const R = {
   produto:    'produto.html',
   produtopag: 'produtopag.html',
   busca:      'produtos.html',
-  sobrenos:   'quemsomos.html',
+  quemsomos:   'quemsomos.html',
 };
 
 const ir = rota => window.location.href = rota;
