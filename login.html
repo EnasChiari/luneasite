@@ -324,6 +324,91 @@
       border-radius:6px; padding:10px 14px; font-size:12.5px; color:#e88; margin-bottom:14px;
       display:none; }
     .msg-erro.show { display:block; }
+        /* ══════════════════════════════════════════
+       RESPONSIVO / MOBILE
+       ══════════════════════════════════════════ */
+    .menu-toggle { display: none; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 26px;
+      height: 20px;
+      cursor: pointer;
+      order: 3;
+    }
+    .hamburger span {
+      display: block; height: 2px; width: 100%;
+      background: var(--light);
+      transition: transform .25s, opacity .25s;
+    }
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 960px) {
+      header { padding: 14px 20px; flex-wrap: wrap; }
+      .logo img { height: 44px; }
+      .hamburger { display: flex; }
+      .header-search { display: none; }
+
+      nav {
+        order: 4;
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease;
+      }
+      .menu-toggle:checked ~ nav {
+        max-height: 400px;
+        margin-top: 14px;
+        padding-bottom: 10px;
+      }
+      nav a {
+        display: block; width: 100%;
+        padding: 12px 4px;
+        border-bottom: 1px solid rgba(155,109,197,.15);
+      }
+
+      .announcement-bar {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 4px;
+        padding: 8px 16px;
+      }
+      .announcement-bar span:nth-child(1),
+      .announcement-bar span:nth-child(2),
+      .announcement-bar span:nth-child(3) { justify-content:center; text-align: center; }
+
+      /* lado esquerdo (fotos + texto de marca) some no celular,
+         mostra só o formulário de login */
+      .main { grid-template-columns: 1fr; min-height: auto; }
+      .lado-esq { display: none; }
+      .lado-dir { padding: 32px 20px; border-left: none; }
+      .form-box { max-width: 100%; }
+      .form-titulo h1 { font-size: 28px; }
+
+      .beneficios-bar {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px; gap: 18px 12px;
+      }
+
+      footer { padding: 36px 20px 16px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+      .footer-grid > div:first-child,
+      .footer-newsletter { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .beneficios-bar { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -336,13 +421,18 @@
   </div>
 
   <!-- HEADER -->
-  <header>
+<header>
     <div class="logo">
-      <!-- LOGO: substitua src -->
-      <a href="index.html"><img src="SEU_LOGO_AQUI.png" alt="Lunéa" /></a>
+      <a href="index.html"><img src="Logo.png" alt="Lunéa" /></a>
     </div>
 
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </label>
+
     <nav>
+
       <a href="novidades.html">Novidades</a>
       <a href="produtos.html?categoria=roupas">Roupas</a>
       <a href="produtos.html?categoria=acessorios">Acessórios</a>
