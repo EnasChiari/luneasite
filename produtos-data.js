@@ -316,7 +316,7 @@ const PRODUTOS = [
       { nome: "Preto", hex: "#1a1a1a" },
       { nome: "Lilás", hex: "#c9aee8" }
     ],
-    imagens: ["SUA_IMAGEM_PRODUTO_11.jpg","SUA_IMAGEM_P11_FOTO2.jpg","SUA_IMAGEM_P11_FOTO3.jpg","SUA_IMAGEM_P11_FOTO4.jpg"],
+    imagens: ["1 Peça Colar Gótico Punk Y2K Coração Metálico Estrela, Estilo Escuro Geométrico Banhado a Liga de Zinco, Joia para Mulheres1.jpg","1 Peça Colar Gótico Punk Y2K Coração Metálico Estrela, Estilo Escuro Geométrico Banhado a Liga de Zinco, Joia para Mulheres2.jpg","1 Peça Colar Gótico Punk Y2K Coração Metálico Estrela, Estilo Escuro Geométrico Banhado a Liga de Zinco, Joia para Mulheres3.jpg","1 Peça Colar Gótico Punk Y2K Coração Metálico Estrela, Estilo Escuro Geométrico Banhado a Liga de Zinco, Joia para Mulheres4.jpg"],
     descricao: "Colar com pingentes de coração e estrela inspirado na moda gótica e Y2K.",
     detalhes: "Liga metálica. Fecho regulável.",
     diferenciais: ["Corrente Regulável","Acabamento Metálico","Estilo Y2K","Leve"],
