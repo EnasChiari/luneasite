@@ -211,7 +211,7 @@ function initFooterLinks() {
     'formas de pagamento':    'pagamento.html',
     'política de privacidade':'privacidade.html',
     'termos de uso':          'termos.html',
-    'nossa história':         'sobre.html',
+    'nossa história':         'quemsomos.html',
     'guias de estilo':        R.estilos,
     'blog lunéa':             'blog.html',
     'trabalhe conosco':       'trabalhe.html',
